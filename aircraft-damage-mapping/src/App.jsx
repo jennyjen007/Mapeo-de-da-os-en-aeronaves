@@ -280,7 +280,7 @@ function App() {
         {/* Panel de Estadísticas */}
         <section className="stats">
           <div className="stat-card stat-card-horizontal">
-            <img src="/src/icons/aircraft.png" alt="Aeronaves" className="custom-stat-icon" />
+            <img src="/icons/aircraft.png" alt="Aeronaves" className="custom-stat-icon" />
             <div className="stat-info">
               <span>Total Aeronaves</span>
               <h2>{aircraftList.length}</h2>
@@ -288,7 +288,7 @@ function App() {
           </div>
 
           <div className="stat-card stat-card-horizontal">
-            <img src="/src/icons/inspection.png" alt="Inspecciones" className="custom-stat-icon" />
+            <img src="/icons/inspection.png" alt="Inspecciones" className="custom-stat-icon" />
             <div className="stat-info">
               <span>Inspecciones</span>
               <h2>{inspectionList.length}</h2>
@@ -296,7 +296,7 @@ function App() {
           </div>
 
           <div className="stat-card stat-card-horizontal">
-            <img src="/src/icons/reports.png" alt="Daños" className="custom-stat-icon" />
+            <img src="/icons/reports.png" alt="Daños" className="custom-stat-icon" />
             <div className="stat-info">
               <span>Registros de Daños</span>
               <h2>{damageList.length}</h2>
