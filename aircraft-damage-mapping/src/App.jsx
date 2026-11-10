@@ -8,9 +8,8 @@ import {
   deleteDoc,
   doc,
 } from 'firebase/firestore'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
-import { db, storage } from './firebase'
+import { db } from './firebase'
 import './App.css'
 
 function App() {
@@ -192,9 +191,12 @@ function App() {
       let imageUrl = ''
 
       if (imageFile) {
-        const storageRef = ref(storage, `damages/${selectedAircraft.id}/${Date.now()}_${imageFile.name}`)
-        const snapshot = await uploadBytes(storageRef, imageFile)
-        imageUrl = await getDownloadURL(snapshot.ref)
+        imageUrl = await new Promise((resolve, reject) => {
+          const reader = new FileReader()
+          reader.readAsDataURL(imageFile)
+          reader.onload = () => resolve(reader.result)
+          reader.onerror = (error) => reject(error)
+        })
       }
 
       await addDoc(collection(db, 'damages'), {
@@ -218,7 +220,7 @@ function App() {
       setShowDamageForm(false)
     } catch (err) {
       console.error(err)
-      setError('No se pudo registrar el daño o subir la imagen.')
+      setError('No se pudo registrar el daño o procesar la imagen.')
     } finally {
       setSaving(false)
     }
