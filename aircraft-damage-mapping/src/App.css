@@ -607,3 +607,52 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
+/* Estilo visual para las inspecciones atendidas */
+.inspection-attended {
+  opacity: 0.75;
+  border-left: 4px solid #48bb78 !important; /* Línea verde indicando que fue atendida */
+  background-color: rgba(72, 187, 120, 0.05);
+}
+
+.inspection-attended h4 {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* Configuración especial para la impresión y exportación a PDF */
+@media print {
+  /* Oculta los elementos que no deben salir en el reporte impreso */
+  header,
+  .welcome-banner,
+  .stats,
+  .action-buttons-group,
+  .form-card,
+  .secondary-button,
+  button,
+  input[type="file"],
+  input[type="checkbox"] {
+    display: none !important;
+  }
+
+  /* Asegura que el panel activo y los historiales se extiendan limpios en el papel */
+  body {
+    background: white;
+    color: black;
+  }
+
+  .app {
+    padding: 0;
+  }
+
+  .selected-aircraft-panel {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .aircraft-card {
+    break-inside: avoid; /* Evita que las tarjetas se corten a mitad de página */
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+}

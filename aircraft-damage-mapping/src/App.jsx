@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import {
   collection,
   addDoc,
+  updateDoc,
   onSnapshot,
   query,
   where,
@@ -159,6 +160,7 @@ function App() {
         type: inspection.type,
         technician: inspection.technician.trim(),
         notes: inspection.notes.trim(),
+        attended: false,
         createdAt: new Date().toISOString(),
       })
 
@@ -174,6 +176,22 @@ function App() {
     } finally {
       setSaving(false)
     }
+  }
+
+  // Función para alternar el estado atendido/pendiente de la inspección
+  async function handleToggleInspection(inspectionId, currentStatus) {
+    try {
+      const inspectionRef = doc(db, 'inspections', inspectionId)
+      await updateDoc(inspectionRef, { attended: !currentStatus })
+    } catch (err) {
+      console.error(err)
+      setError('No se pudo actualizar el estado de la inspección.')
+    }
+  }
+
+  // Función para exportar/imprimir reporte en PDF
+  function handleExportPDF() {
+    window.print()
   }
 
   async function handleDamageSubmit(event) {
@@ -366,9 +384,14 @@ function App() {
           <div className="selected-aircraft-panel">
             <div className="panel-header">
               <h2>Panel Activo: {selectedAircraft.registration}</h2>
-              <button className="secondary-button" onClick={() => setSelectedAircraft(null)}>
-                Cerrar Panel
-              </button>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button className="primary-button" onClick={handleExportPDF} style={{ backgroundColor: '#2b6cb0' }}>
+                  🖨️ Exportar PDF
+                </button>
+                <button className="secondary-button" onClick={() => setSelectedAircraft(null)}>
+                  Cerrar Panel
+                </button>
+              </div>
             </div>
 
             <div className="action-buttons-group">
@@ -572,8 +595,18 @@ function App() {
                 ) : (
                   <div className="aircraft-list">
                     {inspectionList.map((item) => (
-                      <article className="aircraft-card" key={item.id}>
-                        <h4>{item.type}</h4>
+                      <article className={`aircraft-card ${item.attended ? 'inspection-attended' : ''}`} key={item.id}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <h4>{item.type}</h4>
+                          <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', cursor: 'pointer' }}>
+                            <input 
+                              type="checkbox" 
+                              checked={!!item.attended} 
+                              onChange={() => handleToggleInspection(item.id, item.attended)} 
+                            />
+                            {item.attended ? 'Atendida' : 'Pendiente'}
+                          </label>
+                        </div>
                         <p><strong>Fecha:</strong> {item.date}</p>
                         <p><strong>Técnico:</strong> {item.technician}</p>
                         <p>{item.notes || 'Sin notas'}</p>
