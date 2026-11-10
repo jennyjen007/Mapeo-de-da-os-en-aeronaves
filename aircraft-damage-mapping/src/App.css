@@ -1,0 +1,609 @@
+/* ==========================================================================
+   Variables & Reset (Paleta de colores elegante y corporativa)
+   ========================================================================== */
+:root {
+  --bg-main: #f1f5f9;
+  --bg-card: #ffffff;
+  --border-color: #cbd5e1;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  
+  --primary: #1e3a8a; /* Azul marino profundo */
+  --primary-hover: #1e40af;
+  --secondary: #475569;
+  
+  --accent-damage: #dc2626;
+  --accent-warning: #d97706;
+  --accent-success: #16a34a;
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Layout Principal
+   ========================================================================== */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: var(--primary);
+  color: #ffffff;
+  padding: 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-titles h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+.header-titles p {
+  margin: 4px 0 0;
+  font-size: 0.875rem;
+  color: #93c5fd;
+}
+
+main {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ==========================================================================
+   Banner de Bienvenida (Texto asegurado en blanco puro)
+   ========================================================================== */
+.welcome-banner {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  color: #ffffff;
+  padding: 24px 32px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.welcome-content h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff !important; /* Forzado en blanco */
+}
+
+.welcome-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #e2e8f0 !important; /* Gris muy claro legible */
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Estadísticas
+   ========================================================================== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  padding: 20px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-card span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   Íconos profesionales de estadísticas (Lucide)
+   ========================================================================== */
+.stat-lucide-icon {
+  color: var(--primary);
+  background: #eff6ff;
+  padding: 6px;
+  border-radius: 8px;
+  box-sizing: content-box;
+}
+
+.stat-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 8px 0 0;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   Botones
+   ========================================================================== */
+.primary-button, .secondary-button {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.primary-button {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.primary-button:hover {
+  background: #1d4ed8;
+}
+
+.primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.secondary-button {
+  background: #e2e8f0;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.secondary-button:hover {
+  background: #cbd5e1;
+}
+
+/* ==========================================================================
+   Formularios y Cards de Captura
+   ========================================================================== */
+.form-card {
+  background: var(--bg-card);
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+
+.form-card h2, .form-card h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+form label:has(textarea),
+form button[type="submit"] {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+input, select, textarea {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: #f8fafc;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Panel de Aeronave Seleccionada
+   ========================================================================== */
+.selected-aircraft-panel {
+  background: #ffffff;
+  border: 1px solid #94a3b8;
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--bg-main);
+  padding-bottom: 16px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--primary);
+}
+
+.action-buttons-group {
+  display: flex;
+  gap: 12px;
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   Tarjetas de Flota Estilizadas
+   ========================================================================== */
+.aircraft-section h2, .aircraft-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.aircraft-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.fleet-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.fleet-card:hover {
+  border-color: #94a3b8;
+  box-shadow: var(--shadow-md);
+}
+
+.fleet-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 12px;
+}
+
+.fleet-icon-airplane {
+  font-size: 1.5rem;
+  background: #eff6ff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.fleet-titles h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.fleet-model {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.fleet-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.fleet-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+}
+
+.status-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+.status-success {
+  background: #dcfce7;
+  color: var(--accent-success);
+}
+
+.status-warning {
+  background: #fef9c3;
+  color: var(--accent-warning);
+}
+
+.fleet-inspection-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.fleet-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.danger-outline-button {
+  background: #fef2f2;
+  color: var(--accent-damage);
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px;
+  transition: background 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.danger-outline-button:hover {
+  background: #fee2e2;
+}
+
+.damage-card {
+  border-left: 4px solid var(--accent-warning);
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.aircraft-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+/* ==========================================================================
+   Mapa Visual Interactivo de Aeronave
+   ========================================================================== */
+.aircraft-diagram-section {
+  background: linear-gradient(to bottom, #ffffff, #f8fafc);
+  border: 1px solid var(--border-color);
+}
+
+.aircraft-map-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.zone-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.zone-card:hover {
+  border-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.zone-card h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.zone-badge {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.zone-card.zone-active {
+  border-left: 4px solid var(--accent-warning);
+  background: #fffbeb;
+}
+
+.zone-card.zone-severe {
+  border-left: 4px solid var(--accent-damage);
+  background: #fef2f2;
+}
+
+.zone-card.zone-active .zone-badge {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.zone-card.zone-severe .zone-badge {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+/* ==========================================================================
+   Alertas y Diseño Adaptativo (Responsive)
+   ========================================================================== */
+.error-message {
+  background: #fef2f2;
+  color: var(--accent-damage);
+  border: 1px solid #fecaca;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .history-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+/* ==========================================================================
+   Tarjetas de Estadísticas perfectamente centradas
+   ========================================================================== */
+.stat-card-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* <--- Centra horizontalmente todo el conjunto */
+  gap: 16px;
+  padding: 24px 20px;
+}
+
+.custom-stat-icon {
+  width: 44px; /* Tamaño consistente para los tres íconos */
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos internos */
+  text-align: center;   /* Centra las líneas de texto */
+  gap: 4px;
+}
+
+.stat-info span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;  /* Evita saltos de línea extraños */
+}
+
+.stat-info h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-main);
+  line-height: 1;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Fondo moderno con textura de retícula/ruido técnico sutil */
+  background-color: #f1f5f9;
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 24px 24px;      /* Tamaño del patrón de cuadrícula */
+  
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
